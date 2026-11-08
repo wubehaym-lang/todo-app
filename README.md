@@ -35,3 +35,14 @@ Through this project, I practiced DOM manipulation, event handling, arrays, func
 ##Project Status
 
 Completed as a personal JavaScript learning project.
+
+## Screenshots
+
+### Main Interface
+![Main Interface](screenshots/main-interface.png)
+
+### Task Management
+![Task Management](screenshots/task-management.png)
+
+### Sorting Features
+![Sorting Features](screenshots/sorting-features.png)
