@@ -3,7 +3,7 @@ Todo App
 
 A task management application built with HTML, CSS, and JavaScript. It helps users organize tasks, track progress, and manage their daily activities.
 
-Features
+##Features
 
 - Add new tasks
 - Edit existing tasks
@@ -15,23 +15,23 @@ Features
 - Validate task input
 - Save tasks using browser local storage
 
-Technologies Used
+##Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
 - Local Storage API
 
-What I Learned
+##What I Learned
 
 Through this project, I practiced DOM manipulation, event handling, arrays, functions, filtering and sorting data, and storing application data with local storage.
 
-Getting Started
+##Getting Started
 
 1. Clone or download this repository.
 2. Open the project folder.
 3. Open the main HTML file in a web browser.
 
-Project Status
+##Project Status
 
 Completed as a personal JavaScript learning project.
