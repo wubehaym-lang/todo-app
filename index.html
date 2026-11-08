@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js For begginer</title>
+</head>
+<style>
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body{
+    background: #557;
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-grid, .display-grid{
+    display: grid;
+    grid-template-columns: 200px 150px 80px;
+    margin-bottom: 10px;
+    padding: 5px;
+    column-gap: 1em;
+  }
+
+   .display-grid{
+    border-radius: 5px;
+    font-size: 15px;
+    box-shadow: 1px 1px 8px #00000059;
+   }
+   
+  .todo-box{
+    background-color: #fff;
+    color: #000;
+    padding: 20px;
+    border-radius: 5mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .head-text{
+    margin: 15px 0;
+  }
+
+  .alert{
+    color: #ba0100;
+  }
+
+  .inputName, 
+  .inputDate,
+  .add-todo, 
+  .delet-btn {
+    border: 1px solid #00000038;
+    outline: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
+  .add-todo-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+    box-shadow: 4px 4px 10px #00000059;
+    border-radius: 10px;
+  }
+
+  .displa-date,
+  .displa-text{
+    margin: auto 0;
+  }
+
+  .delet-btn, .add-todo{
+    cursor: pointer;
+    color: #fff;
+  }
+
+   .delet-btn{
+    background-color: #ba0100;
+   } 
+   
+   .add-todo{
+    background-color: green;
+   }
+
+</style>
+<body>
+  <div class="todo-box">
+    <div class="add-todo-section">
+      <h2 class="head-text">Todo List</h2>
+      <div class="input-grid">
+        <input class="inputName" placeholder="Add Name">
+        <input class="inputDate" type="date">
+        <button class="add-todo">Add</button>
+      </div>
+    </div>
+    
+    <div class="display-box"></div>
+  </div>
+
+  
+  <script>
+     let todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+     const inputElement = document.querySelector('.inputName');
+     const inputDueDate = document.querySelector('.inputDate');
+     const headForAlert = document.querySelector('.head-text');
+
+     todoListAdd();
+
+     document.querySelector('.add-todo').addEventListener('click', () => {
+      if(inputElement.value !== '' && inputDueDate.value !== ''){
+        todoList.push({
+        name: inputElement.value,
+        dueDate: inputDueDate.value
+      });
+      } else{
+          headForAlert.classList.add('alert');
+          headForAlert.innerText = 'Name or DueDate is Missed';
+        setTimeout(()=>{
+          headForAlert.classList.remove('alert');
+          headForAlert.innerText = 'Todo List';
+        }, 3000);
+      }
+      todoListAdd();
+      inputElement.value = '';
+      inputDueDate.value = '';
+     });
+
+     function todoListAdd(){
+      let todoListHTML = '';
+      todoList.forEach((todoObject, index) =>{
+        todoListHTML += `
+        <div class="display-grid">
+          <div class="displa-text">${todoObject.name}</div>
+          <div class="displa-date">${todoObject.dueDate}</div>
+          <button class="delet-btn"onclick="todoList.splice(${index}, 1);todoListAdd();">Delete</button>
+        </div>`
+          
+      } );
+      document.querySelector('.display-box').innerHTML = todoListHTML;
+      localStorage.setItem('todoList', JSON.stringify(todoList));
+
+      if(!todoListHTML){
+        document.querySelector('.display-box').innerHTML = `<h3>Todo Not yet added</h3>`;
+      }
+     }
+  </script>
+</body>
+</html>
